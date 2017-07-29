@@ -21,7 +21,7 @@ router.get('/', function(req, res, next){
 router.get('/managers', function(req, res, next){
     db.listManagers()
     .then(function(users){
-      res.render('managers', { users, nav: 'users' });
+      res.render('managers', { users, nav: 'managers' });
     })
     .catch(function(err){
       next(err);
