@@ -29,7 +29,14 @@ function sync(){
 }
 
 function list(){
-  return query('SELECT name, isManager from users', null)
+  return query('SELECT name, isManager, id from users', null)
+    .then(function(result){
+      return result.rows;
+    });
+}
+
+function listManagers(){
+  return query('SELECT name, isManager, id from users WHERE ismanager = true', null)
     .then(function(result){
       return result.rows;
     });
@@ -42,9 +49,29 @@ function add(name, isManager){
     });
 }
 
+function deleteUser(id){
+  return query('DELETE from users where id = $1', [id]);
+}
+
+function updateUser(id){
+  return query('SELECT isManager FROM users WHERE id = $1', [id])
+  .then(function(result){
+    console.log('result:')
+    console.log(result.rows[0])
+    if (result.rows[0].ismanager === false){
+      return query('UPDATE users SET isManager = TRUE  WHERE id = $1', [id])
+    } else{
+      return query('UPDATE users SET isManager = FALSE WHERE id = $1', [id])
+    }
+  });
+}
+
 //exports
 module.exports = {
   add,
-  sync,
-  list
+  deleteUser,
+  list,
+  listManagers,
+  updateUser,
+  sync
 }

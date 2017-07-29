@@ -1,1 +1,26 @@
-node_modules
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class='container'>
+  <h1>Users</h1>
+  <ul class='list-group'>
+    {% for user in users %}
+      <li class='list-group-item'>
+          {{ user.name }}<br><br>
+          {% if user.ismanager %}
+          <label class="label label-success">Manager</label>
+          {% else %}
+          <form method="post" action="users/{{ user.id }}?_method=PUT"">
+          <button class="btn btn-primary btn-block">Make Manager</button>
+          </form>
+          <form method="post" action="users/{{ user.id }}?_method=DELETE"">
+          <button class="btn btn-danger btn-block">Delete</button>
+          </form>
+          {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+
+{% endblock %}

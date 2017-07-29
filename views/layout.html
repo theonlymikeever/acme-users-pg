@@ -14,8 +14,8 @@
   <!-- tab nav -->
   <ul class="nav nav-tabs" id="mytabs">
     <li role="presentation" {% if nav === 'home' %} class="active" {% endif %}> <a href='/'>Home</a></li>
-    <li role="presentation" {% if nav === cat %} class="active" {% endif %} ><a href='/users'>Users {{ count }}</a></li>
-    <li role="presentation" {% if nav === cat %} class="active" {% endif %} ><a href='/users/managers'>Managers {{ count }}</a></li>
+    <li role="presentation" {% if nav === 'users' %} class="active" {% endif %} ><a href='/users'>Users ({{ count }})</a></li>
+    <li role="presentation" {% if nav === 'managers' %} class="active" {% endif %} ><a href='/users/managers'>Managers ({{ managerCount }})</a></li>
   </ul>
   <div>
   {% block content %}

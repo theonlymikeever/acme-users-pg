@@ -19,6 +19,21 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(morgan('tiny')); //logging
 app.use(require('body-parser').urlencoded({ extended: false })); //for parsing form posts
 app.use(require('method-override')('_method')); //for creating delete methods
+app.use(function(req, res, next){
+  db.list()
+    .then(function(users){
+      res.locals.count = users.length; //total user count
+      return db.listManagers();
+    })
+    .then(function(managers){
+      res.locals.managerCount = managers.length;
+      next();
+    })
+    .catch(function(err){
+      next(err);
+    });
+}); //counter
+
 
 //routes
 app.get('/', function(req, res, next){
