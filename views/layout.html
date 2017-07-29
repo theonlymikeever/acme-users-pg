@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="/public/custom.css">
+  <link rel="stylesheet" type="text/css" href="/vendor/bootstrap/dist/css/bootstrap.css">
+  <script src="/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Acme Users PG</title>
+</head>
+<body>
+<div class="container">
+  <h1>Acme, the Users PG Version!</h1>
+  <!-- tab nav -->
+  <ul class="nav nav-tabs" id="mytabs">
+    <li role="presentation" {% if nav === 'home' %} class="active" {% endif %}> <a href='/'>Home</a></li>
+    <li role="presentation" {% if nav === cat %} class="active" {% endif %} ><a href='/users'>Users {{ count }}</a></li>
+    <li role="presentation" {% if nav === cat %} class="active" {% endif %} ><a href='/users/managers'>Managers {{ count }}</a></li>
+  </ul>
+  <div>
+  {% block content %}
+    Whoops! Something Didn't Load Properly
+  {% endblock %}
+  </div>
+</div>
+  <footer class="footer">
+    <div class="container">
+      <p class="text-muted">App written  by Mike Kerslake with express, node and too many cups of coffee.</p>
+    </div>
+  </footer>
+</body>
+</html>
