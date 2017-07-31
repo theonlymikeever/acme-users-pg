@@ -39,7 +39,10 @@ router.post('/', function(req, res, next){
   db.add(req.body.name, manager)
     .then(function(user){
       res.redirect('/');
-    });
+    })
+    .catch(function(err){
+      res.render('error', {error: err.message})
+    })
 });
 
 //delete user
