@@ -9,7 +9,7 @@
     "chalk": "^2.0.1",
     "express": "^4.15.3",
     "method-override": "^2.3.9",
-    "morgan": "^1.8.2",
+    "morgan": "^1.9.1",
     "nunjucks": "^3.0.1",
     "pg": "^7.0.2"
   },
